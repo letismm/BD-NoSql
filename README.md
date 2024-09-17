@@ -1,6 +1,10 @@
 # BD-NoSql
+Rede social para GI?
 
 Authors: Letícia Machado e George Lucas
+
+Descreva as informações dos usuários.
+
 
 O Sistema de Comentários para um Blog irá permitir que os usuários publiquem comentários em postagens específicas. Os comentários devem ser associados a uma postagem, conter o nome do autor, o texto do comentário, data/hora da criação, e podem permitir respostas entre os comentários, criando conversas encadeadas. O sistema deverá ser eficiente na leitura de grandes volumes de dados (vários comentários por postagem) e flexível para gerenciar metadados de comentários e respostas.
 A escolha de um banco de dados NoSQL baseado em modelo de documentos, é ideal para essa aplicação devido à flexibilidade e simplicidade no armazenamento de dados sem a necessidade de estruturas rígidas como tabelas e relações fixas.
