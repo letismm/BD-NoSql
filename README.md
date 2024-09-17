@@ -7,6 +7,8 @@ A escolha de um banco de dados NoSQL baseado em modelo de documentos, é ideal p
 Comentários podem ter diferentes metadados (nome, email, data, respostas) que podem variar de um comentário para outro. O modelo de documentos armazena dados em formatos como JSON, permitindo essa flexibilidade, onde cada documento pode ter sua própria estrutura podendo adicionar novos campos (ex. moderado, oculto, editado) facilmente sem modificar uma tabela inteira ou impactar outras partes do sistema.
 Em um blog, postagens podem ter milhares de comentários, e as consultas podem aumentar exponencialmente. O modelo de documentos permite armazenar todos os comentários de uma postagem juntos, em um documento único ou em coleções, melhorando o desempenho de leitura e escrita.
 
+Firebase
+
 Exemplo da Estrutura do Documento em JSON :
 {
   "post_id": "12345",
