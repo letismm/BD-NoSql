@@ -15,39 +15,39 @@ Comentários podem ter diferentes metadados (nome, email, data, respostas) que p
 
 **Estrutura do Documento em JSON**:
 
-- Coleção usuários:
-{
+- Coleção usuários: <br>
+{ <br>
   "_id": "123", <br>
   "nome": "João Silva", <br>
   "email": "joao.silva@email.com", <br>
   "data_entrada": "2024-01-15", <br>
   "curso": "Ciência da Computação" <br>
-}
+} <br>
 
-- Coleção posts:
-{
-  "_id": "456",
-  "conteudo": "Esse é o conteúdo do post",
-  "id_usuario": "123",
-  "interacoes": 10,
-  "timestamp": "2024-09-15T14:30:00Z"
-}
+- Coleção posts: <br>
+{ <br>
+  "_id": "456", <br>
+  "conteudo": "Esse é o conteúdo do post", <br>
+  "id_usuario": "123", <br>
+  "interacoes": 10, <br>
+  "timestamp": "2024-09-15T14:30:00Z" <br>
+} <br>
 
-- Coleção comentários:
-{
-  "_id": "789",
-  "id_post": "456",
-  "conteudo": "Esse é o primeiro comentário",
-  "timestamp": "2024-09-15T15:00:00Z",
-  "id_comentario_pai": null
-}
-{
-  "_id": "790",
-  "id_post": "456",
-  "conteudo": "Esse é um comentário em resposta ao primeiro comentário",
-  "timestamp": "2024-09-15T16:00:00Z",
-  "id_comentario_pai": "789"
-}
+- Coleção comentários: <br>
+{ <br>
+  "_id": "789", <br>
+  "id_post": "456", <br>
+  "conteudo": "Esse é o primeiro comentário", <br>
+  "timestamp": "2024-09-15T15:00:00Z", <br>
+  "id_comentario_pai": null <br>
+} <br>
+{ <br>
+  "_id": "790", <br>
+  "id_post": "456", <br>
+  "conteudo": "Esse é um comentário em resposta ao primeiro comentário", <br>
+  "timestamp": "2024-09-15T16:00:00Z", <br>
+  "id_comentario_pai": "789" <br>
+} <br>
 
 
 **Relação entre a coleção de documentos**:
