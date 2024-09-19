@@ -21,7 +21,7 @@ Comentários podem ter diferentes metadados (nome, email, data, respostas) que p
   "nome": "João Silva", <br>
   "email": "joao.silva@email.com", <br>
   "data_entrada": "2024-01-15", <br>
-  "periodo": "sétimo" <br>
+  "periodo": "setimo" <br>
 } <br>
 
 - Coleção posts: <br>
