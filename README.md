@@ -17,11 +17,11 @@ Comentários podem ter diferentes metadados (nome, email, data, respostas) que p
 
 - Coleção usuários:
 {
-  "_id": "123", 
-  "nome": "João Silva",
-  "email": "joao.silva@email.com",
-  "data_entrada": "2024-01-15",
-  "curso": "Ciência da Computação"
+  "_id": "123", <br>
+  "nome": "João Silva", <br>
+  "email": "joao.silva@email.com", <br>
+  "data_entrada": "2024-01-15", <br>
+  "curso": "Ciência da Computação" <br>
 }
 
 - Coleção posts:
