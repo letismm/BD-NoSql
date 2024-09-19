@@ -2,7 +2,7 @@
 
 **Rede social para Gestão da Informação**
 
-Authors: Letícia Machado e George Lucas
+Autores: Letícia Machado e George Lucas
 
 A rede social para o curso de Gestão da Informação tem como objetivo reunir os estudantes do curso assim como obter apoio durante a graduação. Aqui será possível interagir com os estudantes de diferentes períodos, cada usuário possui seu cadastro e pode realizar publicações como: uma lista de exercícios resolvida com comentários para auxiliar outros alunos, um artigo lido que achou interessante publicar, uma questão de cálculo em dúvida pedindo ajuda de outros usuários, enfim. Cada publicação permite que os usuários comentem, e que comentem em outros comentários.
 
