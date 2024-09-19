@@ -40,3 +40,8 @@ Exemplo da Estrutura do Documento em JSON :
   ]
 }
 
+
+Relação entre a coleção de documentos:
+
+
+![Diagrama Blog drawio](https://github.com/user-attachments/assets/f1210768-f708-4f91-9bf2-15e8d947b84d)
