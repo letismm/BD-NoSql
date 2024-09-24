@@ -9,11 +9,11 @@ db.posts.find(
     { "_id": "post_001" }
 )
 
-db.users.updateOne(
+db.usuarios.updateOne(
     { "_id": "user_001" },
     { $set: { "nome": "João Silva Pereira" } }
 );
 
-db.users.findOne({
+db.usuarios.findOne({
     "_id": "user_001"
 });
