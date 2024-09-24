@@ -52,5 +52,4 @@ Comentários podem ter diferentes metadados (nome, email, data, respostas) que p
 
 **Relação entre a coleção de documentos**:
 
-![Diagrama Blog drawio](https://github.com/user-attachments/assets/02ad2b9c-d103-4ffb-afc1-5a598b6e2ddb)
-
+![Diagrama Blog drawio](https://github.com/user-attachments/assets/98f3948b-4990-4c2f-8d86-b9c508c5ebc8)
