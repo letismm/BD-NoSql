@@ -5,7 +5,7 @@ from bson import ObjectId
 from typing import List
 
 # Conectar ao MongoDB Atlas
-MONGO_URI = "mongodb+srv://georgealbuquerque:Ga!pitoko1@Blog-Gi.mongodb.net/<dbname>?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://georgealbuquerque:Ga!pitoko1@Blog-Gi.mongodb.net/Blog-Gi?retryWrites=true&w=majority"
 client = AsyncIOMotorClient(MONGO_URI)
 db = client.Blog-Gi  # Nome do banco de dados
 
