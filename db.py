@@ -2,7 +2,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import json
 
 
-with open(".venv/config.json") as config_file:
+with open("config.json") as config_file:
     config = json.load(config_file)
 
 MONGO_USER = config['MONGO_USER']
