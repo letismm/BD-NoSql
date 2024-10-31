@@ -20,6 +20,44 @@ class User(BaseModel):
     email: str
     periodo: int
 
+async def init_count_min_sketch():
+    await redis_client.execute_command('CMS.INITBYDIM', 'post_views', 2000, 7)
+
+# Increment post view count
+async def increment_post_view(post_id: str):
+    await redis_client.execute_command('CMS.INCRBY', 'post_views', post_id, 1)
+
+# Get view count for a post
+async def get_post_view_count(post_id: str) -> int:
+    count = await redis_client.execute_command('CMS.QUERY', 'post_views', post_id)
+    return count[0] if count else 0
+
+# Top-K to track most commented posts
+async def init_top_k():
+    await redis_client.execute_command('TOPK.RESERVE', 'top_commented_posts', 10, 2000, 7, 0.9)
+
+# Increment comment count for a post in Top-K
+async def increment_post_comment_count(post_id: str):
+    await redis_client.execute_command('TOPK.INCRBY', 'top_commented_posts', post_id, 1)
+
+# Get Top-K most commented posts
+async def get_top_commented_posts():
+    return await redis_client.execute_command('TOPK.LIST', 'top_commented_posts')
+
+# Route to increment and fetch post views
+@app.post("/posts/{post_id}/view")
+async def view_post(post_id: str):
+    await increment_post_view(post_id)
+    view_count = await get_post_view_count(post_id)
+    return {"post_id": post_id, "view_count": view_count}
+
+# Route to increment and fetch most commented posts
+@app.post("/posts/{post_id}/comment")
+async def comment_post(post_id: str):
+    await increment_post_comment_count(post_id)
+    top_posts = await get_top_commented_posts()
+    return {"top_commented_posts": top_posts}
+
 async def gera_id_usuario():
     user_count = await collection_usuario.count_documents({})
     user_number = user_count + 1
