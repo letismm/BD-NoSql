@@ -6,7 +6,15 @@ from typing import List
 import redis.asyncio as redis
 from datetime import datetime
 
+from neo4j import GraphDatabase
 import redis
+
+URI = "neo4j+s://c849aa85.databases.neo4j.io"
+AUTH = ("neo4j", "MhAB8ceKBh1rZt3YsImFHv8Z7V1PNpIW3YZq-oOleaQ")
+
+with GraphDatabase.driver(URI, auth=AUTH) as driver:
+    driver.verify_connectivity()
+    print("Connection established.")
 
 redis_client = redis.Redis(
   host='redis-12766.c308.sa-east-1-1.ec2.redns.redis-cloud.com',
