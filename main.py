@@ -172,3 +172,78 @@ async def get_usuarios_participativos():
 
     resultado = await collection_comentario.aggregate(pipeline).to_list(length=10)
     return {"usuarios-mais-participativos": resultado}
+
+
+--- Neo4j
+
+from neo4j import GraphDatabase
+
+uri = "neo4j+s://21f60417.databases.neo4j.io"
+AUTH = ("neo4j", "ma0OtCJc5DT7KAmue6rouFQDWnEECPbKsbAzqYkoOBE")
+
+driver = GraphDatabase.driver(uri, auth=AUTH)
+
+with driver.session() as session:
+  # Cria os nós dos usuários
+  session.run("CREATE (u1:Usuario {user_id: 'user_001', nome: 'João', email: 'joao@example.com', periodo: 3, data_entrada: '2024-08-01'})")
+  session.run("CREATE (u2:Usuario {user_id: 'user_002', nome: 'Maria', email: 'maria@example.com', periodo: 2, data_entrada: '2024-08-02'})")
+
+  # Cria o nó de post
+  session.run("CREATE (p1:Post {post_id: 'post_001', titulo: 'Primeiro Post', conteudo: 'Conteúdo do primeiro post', data_criacao: '2024-08-10'})")
+
+  # Cria o nó comentário
+  session.run("CREATE (c1:Comentario {comentario_id: 'comment_001', conteudo: 'Ótimo post!', data_criacao: '2024-08-15'})")
+  
+  # Relacionar Usuários com Posts (Ex: Usuário João criou um post)
+  session.run("""
+        MATCH (u1:Usuario {user_id: 'user_001'}), (p1:Post {post_id: 'post_001'})
+        CREATE (u1)-[:USUARIO_CRIOU_POST]->(p1)
+    """)
+
+  # Relacionar Usuário com Post comentado (Ex: Usuário Maria comentou no post do João)
+  session.run("""
+        MATCH (u2:Usuario {user_id: 'user_002'}), (p1:Post {post_id: 'post_001'})
+        CREATE (u2)-[:USUARIO_COMENTOU_POST]->(p1)
+    """)
+  
+driver.close()
+
+
+--- consultando
+
+def execute_query(query):
+    with driver.session() as session:
+        result = session.run(query)
+        return [record for record in result]
+
+# Consultas Cypher
+queries = {
+    "Todos os usuários": """
+        MATCH (u:Usuario)
+        RETURN u.user_id AS user_id, u.nome AS nome, u.email AS email, u.periodo AS periodo, u.data_entrada AS data_entrada
+    """,
+    "Posts e autores": """
+        MATCH (u:Usuario)-[:USUARIO_CRIOU_POST]->(p:Post)
+        RETURN u.nome AS Autor, p.titulo AS Titulo_Post, p.data_criacao AS Data_Criacao
+    """,
+    "Comentários nos posts": """
+        MATCH (u:Usuario)-[:USUARIO_COMENTOU_POST]->(p:Post)
+        MATCH (c:Comentario)-[:USUARIO_COMENTOU_POST]->(p)
+        RETURN u.nome AS Comentador, c.conteudo AS Comentario, p.titulo AS Post, p.data_criacao AS Data_Post
+    """,
+    "Usuários que comentaram posts de outros usuários": """
+        MATCH (u1:Usuario)-[:USUARIO_COMENTOU_POST]->(p:Post)<-[:USUARIO_CRIOU_POST]-(u2:Usuario)
+        WHERE u1 <> u2
+        RETURN u1.nome AS Usuario_Comentador, u2.nome AS Usuario_Autor, p.titulo AS Titulo_Post
+    """
+}
+
+# Executar consultas e imprimir resultados
+for descricao, query in queries.items():
+    print(f"\n--- {descricao} ---")
+    resultado = execute_query(query)
+    for record in resultado:
+        print(record)
+
+# Fechar a conexão com o Neo4j
+driver.close()
